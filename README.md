@@ -1,5 +1,13 @@
 # todolist
 
+## О проекте
+```
+Веб-сервис - список дел
+SPA на Vue.js
+Bulma CSS framework
+Axios для работы с API
+Реализована авторизация
+```
 ## Project setup
 ```
 npm install
