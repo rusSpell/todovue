@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h1>Список задач</h1>
+    <h1 class="title mt-4">Список задач</h1>
     <hr />
-    <table v-if="tasks.length">
+    <div style="overflow: auto;">
+    <table v-if="tasks.length" class="table is-bordered is-narrow is-hoverable">
       <thead>
         <tr>
           <th>#</th>
@@ -21,7 +22,7 @@
           <td class="text_width"><div class="text">{{ task.description }}</div></td>
           <td>{{ task.status }}</td>
           <td>
-            <router-link tag="button" class="btn btn-small" :to="'/task/' + task.id">
+            <router-link tag="button" class="button is-link is-small" :to="'/task/' + task.id">
               Открыть
             </router-link>
           </td>
@@ -29,12 +30,15 @@
       </tbody>
     </table>
     <p v-else>Задачи отсутствуют</p>
+    </div>
+    
 
   </div>
 </template>
 
 <script>
 export default {
+  name: "List",
   computed: {
     tasks() { 
       return this.$store.getters.tasks

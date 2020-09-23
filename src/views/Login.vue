@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Авторизация</h1>
+    <h1 class="title mt-4">Авторизация</h1>
     <form @submit.prevent="login">
       <div class="row">
         <div class="input-field col s4 offset-s4">
@@ -35,7 +35,7 @@ export default {
       let username = this.username 
       let password = this.password
       this.$store.dispatch('login', { username, password })
-      .then(() => this.$router.push('/'))
+      .then(() => this.$router.push('/articles'))
       .catch(err => console.log(err))
     }
   }

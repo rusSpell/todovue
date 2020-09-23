@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from "axios";
-import 'materialize-css/dist/js/materialize.min'
+import DatePicker from 'vue2-datepicker';
 import 'dateformat/lib/dateformat.js'
 
 Vue.config.productionTip = false
@@ -16,5 +16,7 @@ if (token) {
 new Vue({
   router,
   store,
+  axios,
+  DatePicker,
   render: h => h(App)
 }).$mount('#app')

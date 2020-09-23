@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <Navbar />
-    <div class="container">
+    <div class="container px-3">
       <router-view />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -19,5 +20,7 @@
 </script>
 
 <style lang="scss">
-@import "~materialize-css/dist/css/materialize.min.css";
+@import "~bulma/css/bulma.css";
+@import "~vue2-datepicker/index.css";
+
 </style>

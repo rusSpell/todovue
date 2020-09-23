@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Create from '../views/Create.vue'
 import store from '../store/index.js'
 
 Vue.use(VueRouter)
@@ -8,16 +7,14 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'create',
-    component: Create
+    name: 'list',
+    component: () => import('@/views/List.vue')
   },
   {
-    path: '/list',
-    name: 'list',
-    meta: { 
-      requiresAuth: true
-    },
-    component: () => import('@/views/List.vue')
+    path: '/create',
+    name: 'create',
+
+    component: () => import('@/views/Create.vue')
   },
   {
     path: '/task/:id',

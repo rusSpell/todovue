@@ -70,11 +70,12 @@ export default new Vuex.Store({
         axios({url: 'http://192.168.133.51:8000/api/api-token-auth/', data: user, method: 'POST' })
         .then(resp => {
           const token = resp.data.token
-          const user_id = resp.data.user_id
+          const user = resp.data.user_id
           localStorage.setItem('token', token)
-          localStorage.setItem('user', user_id)
+          localStorage.setItem('user', user)
+          console.log(user, '<--');
           axios.defaults.headers.common['Authorization'] = 'Token ' + token
-          commit('auth_success', token, user_id)
+          commit('auth_success', token, user)
           resolve(resp)
         })
         .catch(err => {
@@ -89,6 +90,7 @@ export default new Vuex.Store({
         console.log('logout');
         commit('logout')
         localStorage.removeItem('token')
+        localStorage.removeItem('user')
         delete axios.defaults.headers.common['Authorization']
         resolve()
       })
