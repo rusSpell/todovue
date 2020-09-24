@@ -1,23 +1,26 @@
 <template>
   <div>
     <h1 class="title mt-4">Авторизация</h1>
+    <div class="columns dflex mt-4">
     <form @submit.prevent="login">
-      <div class="row">
-        <div class="input-field col s4 offset-s4">
-          <input id="username" v-model="username" type="text">
+      
+  
+        <div class="input-field">
+          <input id="username" v-model="username" type="text" class="input">
           <label for="username">Введите логин</label>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s4 offset-s4">
-          <input id="password" v-model="password" type="password">
+
+
+        <div class="input-field">
+          <input id="password" v-model="password" type="password" class="input">
           <label for="password">Введите пароль</label>
         </div>
-      </div>
-      <div class="row">
-        <button class="btn col s2 offset-s5" type="submit">Войти</button>
-      </div>
+
+ 
+        <button class="button is-link mt-4" type="submit">Войти</button>
+
     </form>
+    </div>
   </div>
 </template>
 
@@ -35,9 +38,15 @@ export default {
       let username = this.username 
       let password = this.password
       this.$store.dispatch('login', { username, password })
-      .then(() => this.$router.push('/articles'))
+      .then(() => this.$router.push('/api/list'))
       .catch(err => console.log(err))
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+  .dflex{
+    display: flex;
+    justify-content: center;
+  }
+</style>

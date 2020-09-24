@@ -2,11 +2,12 @@
 
 ## О проекте
 ```
-Веб-сервис - список дел
-SPA на Vue.js
-Bulma CSS framework
-Axios для работы с API
-Реализована авторизация
+- Веб-сервис - список задач
+- SPA на Vue.js
+- Bulma CSS framework
+- Axios для работы с API
+- Реализована авторизация
+- Создание задач (локально и на сервере по API)
 ```
 ## Project setup
 ```
@@ -25,3 +26,9 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+
+
+

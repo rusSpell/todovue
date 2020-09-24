@@ -31,8 +31,8 @@
             <a class="navbar-link">Работа с API</a>
 
             <div class="navbar-dropdown">
-              <router-link tag="a" to="/articles" class="navbar-item">Список задач</router-link>
-              <router-link tag="a" to="/articles" class="navbar-item">Создать задачу</router-link>
+              <router-link tag="a" to="/api/list" class="navbar-item">Список задач</router-link>
+              <router-link tag="a" to="/api/create" class="navbar-item">Создать задачу</router-link>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
           <div class="navbar-item">
             <div class="buttons">
               <a class="button is-primary" v-if="!isLoggedIn">
-                <strong>Регистрация</strong>
+                Регистрация
               </a>
               <router-link tag="a" to="/login" class="button is-link" v-if="!isLoggedIn">Вход</router-link>
                <a class="button is-link" v-if="isLoggedIn" @click="logout">Выход</a>
@@ -51,36 +51,6 @@
       </div>
       </transition>
     </nav>
-    <!--     <nav class="cyan darken-1">
-      <div class="nav-wrapper">
-        <router-link to="/">
-          <a href="#" class="brand-logo">TODO-List</a>
-        </router-link>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <router-link tag="li" to="/" exact active-class="active">
-            <a class="nav-link active text-white" href="#" >Создать</a>
-          </router-link>
-          <router-link tag="li" to="/list" active-class="active">
-            <a class="nav-link text-white" href="#" >Список локальных задач</a>
-          </router-link>
-          <router-link tag="li" to="/articles" active-class="active">
-            <a class="nav-link text-white" href="#" v-if="isLoggedIn">Работа с API</a>
-          </router-link>
-          <router-link tag="li" to="/login" active-class="active">
-            <a class="nav-link text-white" href="#" v-if="!isLoggedIn">Вход</a>
-          </router-link>
-          <li>
-            <a class="nav-link text-white"  v-if="isLoggedIn" @click="logout">Выход</a>
-          </li>
-        </ul>
-        
-      </div>
-
-      <router-link tag="a" to="/" class="btn-floating btn-large waves-effect waves-light cyan darken-1 btn-create__pos">
-        <i class="material-icons">add</i>
-      </router-link>
-
-    </nav>-->
   </div>
 </template>
 
