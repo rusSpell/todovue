@@ -32,7 +32,7 @@
                 <router-link
                   tag="button"
                   class="button is-link is-small"
-                  :to="'/task/' + task.id"
+                  :to="'/api/task/' + task.id"
                 >Открыть</router-link>
               </td>
             </tr>

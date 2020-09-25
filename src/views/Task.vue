@@ -3,32 +3,28 @@
     <div v-if="task">
       <h1>{{ task.title }}</h1>
       <form @submit.prevent="submitHandler">
-        <!--         <div class="row">
+
           <div class="input-field">
-            <input id="title" v-model="title" type="text" class="validate" required />
+            <input id="title" v-model="title" type="text" class="input" required />
             <label for="title">Имя задачи</label>
             <span class="helper-text" data-error="Обязательное поле" data-success></span>
           </div>
-        </div>-->
-        <div class="row">
-          <div class="chips" ref="chips"></div>
-        </div>
-        <div class="row">
+
+
+
           <div class="input-field">
-            <textarea id="description" class="materialize-textarea" v-model="description"></textarea>
+            <textarea id="description" class="textarea" v-model="description"></textarea>
             <label for="description">Текст задачи</label>
             <span
               class="character-counter"
               style="float: right; font-size: 12px;"
             >{{ description.length }}/2048</span>
           </div>
-        </div>
-        <div class="row">
-          <input class="col s3" type="text" ref="datepicker" />
-        </div>
-        <div class="row" v-if="task.status !=='Выполнено'">
-          <button class="btn" type="submit">Изменить</button>
-          <button class="btn blue" type="button" @click="completeTask">Завершить</button>
+
+
+        <div  v-if="task.status !=='Выполнено'">
+          <button class="button" type="submit">Изменить</button>
+          <button class="button" type="button" @click="completeTask">Завершить</button>
         </div>
       </form>
     </div>
@@ -98,13 +94,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.input-field {
-  margin: 3rem 0 1rem;
-}
-.btn {
-  margin: 2rem 2rem 2rem 0rem;
-}
-.materialize-textarea {
-  min-height: 150px;
-}
+
+
 </style>

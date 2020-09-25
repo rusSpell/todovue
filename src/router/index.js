@@ -41,6 +41,14 @@ Vue.use(VueRouter)
     component: () => import('@/views/apiList.vue')
   },
   {
+    path: '/api/task/:id',
+    name: 'apiTask',
+    meta: { 
+      requiresAuth: true
+    },
+    component: () => import('@/views/apiTask.vue')
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('@/views/Login.vue')
