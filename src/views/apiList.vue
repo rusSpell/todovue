@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 class="title mt-4">Список задач загруженный из API Павла, userid="{{ this.user }}"</h1>
+    <h1 class="title mt-4" v-if="this.user">Список задач загруженный из API Павла, userid="{{ this.user }}"</h1>
+    <h1 class="title mt-4" v-if="!this.user">Список задач загруженный из API Павла"</h1>
     <hr />
     <div v-if="errored">
       <p>Павел сломал API</p>
@@ -27,7 +28,14 @@
               <td class="text_width">
                 <div class="text">{{ task.description }}</div>
               </td>
-              <td>{{ task.task_status }}</td>
+              <td>
+                <span class="icon" v-if="task.task_status">
+                  &#9989;
+                </span>
+                <span class="icon" v-if="!task.task_status">
+                  &#10060;
+                </span>
+              </td>
               <td>
                 <router-link
                   tag="button"
@@ -80,4 +88,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+  .text{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .text_width{
+    max-width: 400px;
+  }
 </style>

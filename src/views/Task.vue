@@ -23,8 +23,8 @@
 
 
         <div  v-if="task.status !=='Выполнено'">
-          <button class="button" type="submit">Изменить</button>
-          <button class="button" type="button" @click="completeTask">Завершить</button>
+          <button class="button is-warning" type="submit">Изменить</button>
+          <button class="button is-success ml-4" type="button" @click="completeTask">Завершить</button>
         </div>
       </form>
     </div>

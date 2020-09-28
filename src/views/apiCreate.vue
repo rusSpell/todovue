@@ -5,6 +5,9 @@
     <h5>Формочка</h5>
     <div class="columns">
       <form @submit.prevent="submitForm" class="column is-four-fifths">
+        <div class="notification" v-if="errored" >
+          Введено некорректное время!
+        </div>
         <div class="input-field">
           <input id="task_title" v-model="task_title" type="text" class="input" />
           <label for="task_title">Заголовок</label>
@@ -84,8 +87,13 @@ export default {
         })
         .then((response) => {
           this.success = true;
-        });
-        this.$router.push("/api/list");
+          this.$router.push("/api/list");
+        })
+        .catch((error) => {
+          console.log(error);
+          this.errored = true;
+        })
+        
     },
   },
 

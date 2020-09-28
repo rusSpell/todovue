@@ -20,7 +20,14 @@
           <td>{{ task.title }}</td>
           <td>{{ new Date(task.date).toLocaleDateString() }}</td>
           <td class="text_width"><div class="text">{{ task.description }}</div></td>
-          <td>{{ task.status }}</td>
+          <td>
+            <span class="icon" v-if="task.status === 'Выполнено'">
+              &#9989;
+            </span>
+            <span class="icon" v-if="task.status === 'В работе'">
+              &#10060;
+            </span>
+          </td>
           <td>
             <router-link tag="button" class="button is-link is-small" :to="'/task/' + task.id">
               Открыть

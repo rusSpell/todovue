@@ -4,7 +4,10 @@
     <div class="columns dflex mt-4">
     <form @submit.prevent="login">
       
-  
+        <div class="notification" v-if="errored" >
+          Введен неверный логин или пароль
+        </div>
+
         <div class="input-field">
           <input id="username" v-model="username" type="text" class="input">
           <label for="username">Введите логин</label>
@@ -30,7 +33,9 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      errored: false
+
     }
   },
   methods: {
@@ -39,7 +44,10 @@ export default {
       let password = this.password
       this.$store.dispatch('login', { username, password })
       .then(() => this.$router.push('/api/list'))
-      .catch(err => console.log(err))
+      .catch((error) => {
+        console.log(error);
+        this.errored = true;
+      })
     }
   }
 }

@@ -37,9 +37,12 @@
         </date-picker>
 
 
-        <div  v-if="task.task_status !=='Выполнено'" class="mt-4">
+        <div  v-if="!task.task_status" class="mt-4">
           <button class="button is-warning" type="submit">Изменить</button>
           <button class="button is-success ml-4" type="button" @click="completeTask">Завершить</button>
+        </div>
+        <div  v-if="task.task_status" class="mt-4">
+          <button class="button is-warning" type="button" @click="renewTask">Вернуть задачу</button>
         </div>
       </form>
       </div>
@@ -120,7 +123,7 @@ export default {
     },
     completeTask() {
       this.$axios
-        .put(`http://192.168.133.51:8000/api/auth/${this.$route.params.id}/?format=json`, {
+        .patch(`http://192.168.133.51:8000/api/auth/${this.$route.params.id}/?format=json`, {
           task_status: true
         })
         .then((response) => {
@@ -128,6 +131,16 @@ export default {
         });
         this.$router.push("/api/list");
     },
+    renewTask() {
+      this.$axios
+        .patch(`http://192.168.133.51:8000/api/auth/${this.$route.params.id}/?format=json`, {
+          task_status: false
+        })
+        .then((response) => {
+          this.success = true;
+        });
+        this.$router.push("/api/list");
+    }
   },
   destroyed() {
     if (this.date && this.date.destroy) {

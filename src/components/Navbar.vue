@@ -40,9 +40,9 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary" v-if="!isLoggedIn">
+              <router-link tag="a" to="/registration" class="button is-primary" v-if="!isLoggedIn">
                 Регистрация
-              </a>
+              </router-link>
               <router-link tag="a" to="/login" class="button is-link" v-if="!isLoggedIn">Вход</router-link>
                <a class="button is-link" v-if="isLoggedIn" @click="logout">Выход</a>
             </div>
@@ -84,11 +84,13 @@ export default {
 
 <style lang="scss" scoped>
 nav {
-  padding: 0 5rem;
+  padding: 0 2rem;
 }
-.btn-create__pos {
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
+.navbar-menu.is-active {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
+
 </style>
