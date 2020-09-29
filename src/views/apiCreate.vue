@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 class="title mt-4">Создание задачи через API Павла, userid="{{ +this.$store.getters.getUserId }}"</h1>
+    <h1 class="title mt-4" v-if="this.user">Список задач загруженный из API Павла, userid="{{ this.user }}"</h1>
+    <h1 class="title mt-4" v-if="!this.user">Список задач загруженный из API Павла"</h1>
     <hr />
     <h5>Формочка</h5>
     <div class="columns">
@@ -17,7 +18,7 @@
           <textarea id="description" v-model="description" type="textarea" class="textarea" />
           <label for="description">Описалово</label>
         </div>
-
+<!-- :disabled-time="notBeforeСurrentHour" -->
         <date-picker 
           v-model="task_date" 
           value-type="format" 
@@ -26,7 +27,7 @@
           :minute-step="15" 
           :hour-options="hours" 
           :disabled-date="notBeforeToday"
-          :disabled-time="notBeforeСurrentHour"
+          
           placeholder="Время исполнения до:"
         >
         </date-picker>

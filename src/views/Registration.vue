@@ -4,11 +4,14 @@
     <div class="columns dflex mt-4">
     <form @submit.prevent="registration" class="px-2">
       
-        <div class="notification" v-if="errored" >
+<!--         <div class="notification" v-if="errored" >
           Пароль должен содержать не менее 8 символов
-        </div>
+        </div> -->
         <div class="notification" v-if="userExists" >
           Пользователь с таким именем уже есть!
+        </div>
+        <div class="notification" v-if="userLong" >
+          Слишком длинное имя пользователя!
         </div>
 
         <div class="input-field">
@@ -42,7 +45,8 @@ export default {
       password: '',
       errored: false,
       success: false,
-      userExists: false
+      userExists: false,
+      userLong: false
     }
   },
   methods: {
@@ -50,21 +54,19 @@ export default {
         
         this.$axios
         .post("http://192.168.133.51:8000/api/registration/", {
-            username: this.username,
-            password: this.password,
+          username: this.username,
+          password: this.password,
         })
         .then((response) => {
-            this.success = true;
-            this.userExists = username;
-            console.log(username, 'userExists');
-            setTimeout(this.$router.push("/login"), 3000)
+          this.success = true;
+          setTimeout(this.$router.push("/login"), 3000)
         })
         .catch((error) => {
-            console.log(error, 'error');
-            
-            this.userExists = username;
-            
-
+          console.log(error.response.data, 'check');
+          if (error.response.data.username == 'Ensure this field has no more than 150 characters.') this.userLong = true; 
+          if (error.response.data.username == 'A user with that username already exists.') this.userExists = true; 
+          console.log(this.userLong, 'userlong');
+          console.log(this.userExists, 'userexist');
         })
         
     },
