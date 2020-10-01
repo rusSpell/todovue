@@ -1,39 +1,51 @@
 <template>
   <div>
-    <h1 class="title mt-4" v-if="this.user">Список задач загруженный из API Павла, userid="{{ this.user }}"</h1>
-    <h1 class="title mt-4" v-if="!this.user">Список задач загруженный из API Павла"</h1>
+    <h1 class="title mt-4" v-if="this.user">
+      Создание задачи API, userid="{{ this.user }}"
+    </h1>
     <hr />
     <h5>Формочка</h5>
     <div class="columns">
       <form @submit.prevent="submitForm" class="column is-four-fifths">
-        <div class="notification" v-if="errored" >
+        <div class="notification" v-if="errored">
           Введено некорректное время!
         </div>
         <div class="input-field">
-          <input id="task_title" v-model="task_title" type="text" class="input" />
+          <input
+            id="task_title"
+            v-model="task_title"
+            type="text"
+            class="input"
+          />
           <label for="task_title">Заголовок</label>
         </div>
 
         <div class="input-field">
-          <textarea id="description" v-model="description" type="textarea" class="textarea" />
+          <textarea
+            id="description"
+            v-model="description"
+            type="textarea"
+            class="textarea"
+          />
           <label for="description">Описалово</label>
         </div>
-<!-- :disabled-time="notBeforeСurrentHour" -->
-        <date-picker 
-          v-model="task_date" 
-          value-type="format" 
-          type="datetime" 
-          :show-second="false" 
-          :minute-step="15" 
-          :hour-options="hours" 
+        <!-- :disabled-time="notBeforeСurrentHour" -->
+        <date-picker
+          v-model="task_date"
+          value-type="format"
+          type="datetime"
+          :show-second="false"
+          :minute-step="15"
+          :hour-options="hours"
           :disabled-date="notBeforeToday"
-          
           placeholder="Время исполнения до:"
         >
         </date-picker>
 
         <div>
-          <button class="button is-link mt-4" type="submit">Создать задачу</button>
+          <button class="button is-link mt-4" type="submit">
+            Создать задачу
+          </button>
         </div>
       </form>
     </div>
@@ -63,22 +75,23 @@ export default {
   components: {
     DatePicker,
   },
-
+  mounted() {
+    this.user = +this.$store.getters.getUserId;
+  },
   methods: {
     notBeforeToday(date) {
       return date < new Date(new Date().setHours(0, 0, 0, 0));
     },
     notBeforeСurrentHour(date) {
-      
-      let closetime = new Date
+      let closetime = new Date();
       //console.log(date.getHours() < 9, 'xxxxxx');
-      return date.getHours() < closetime.getHours()-5;
+      return date.getHours() < closetime.getHours() - 5;
     },
     submitForm() {
       let dateFormat = require("dateformat");
       let date = new Date(this.task_date);
-      console.log(date, '<---');
-      console.log(dateFormat(date, "isoDateTime"), '<----');
+      console.log(date, "<---");
+      console.log(dateFormat(date, "isoDateTime"), "<----");
       this.$axios
         .post("http://192.168.133.51:8000/api/auth/", {
           task_title: this.task_title,
@@ -93,8 +106,7 @@ export default {
         .catch((error) => {
           console.log(error);
           this.errored = true;
-        })
-        
+        });
     },
   },
 

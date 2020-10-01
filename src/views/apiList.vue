@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="title mt-4" v-if="this.user">Список задач загруженный из API Павла, userid="{{ this.user }}"</h1>
-    <h1 class="title mt-4" v-if="!this.user">Список задач загруженный из API Павла"</h1>
+    <h1 class="title mt-4" >Список задач загруженный из API, userid="{{ this.user }}"</h1>
+<!--     <h1 class="title mt-4" v-if="!this.user">Список задач загруженный из API Павла</h1> -->
     <hr />
     <div v-if="errored">
       <p>Павел сломал API</p>
@@ -62,7 +62,7 @@ export default {
       loading: true,
       errored: false,
 
-      user: "",
+      user: null,
 
 
     };
@@ -70,8 +70,8 @@ export default {
 
 
   mounted() {
-    this.user = +this.$store.getters.getUserId;
-    console.log(this.user);
+    this.user = +this.$store.getters.getUserId
+    console.log(this.user, "user");
     this.$axios //http://192.168.133.51:8000/api/tasks/?format=json${this.user}
       .get(`http://192.168.133.51:8000/api/auth/`)
       .then((response) => {
@@ -83,7 +83,13 @@ export default {
       })
       .finally(() => (this.loading = false));
   },
-
+  methods: {
+    getUserId: function () {
+      return console.log(this.$store.getters.getUserId);
+      
+    }
+    
+  }
 
 };
 </script>

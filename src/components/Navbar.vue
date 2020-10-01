@@ -63,13 +63,11 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      console.log('isLoggedIn', this.$store.getters.isLoggedIn);
       return this.$store.getters.isLoggedIn
     }
   },
   methods: {
     logout() {
-      console.log('xxxx');
       this.$store.dispatch('logout')
         .then(() => {
           this.$router.push('/login')
@@ -92,5 +90,6 @@ nav {
     left: 0;
     right: 0;
 }
+
 
 </style>
